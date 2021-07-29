@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['picsum.photos'],
+    domains: ['cdn.sanity.io'],
   },
 }

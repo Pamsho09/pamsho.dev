@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const FooterC = styled.footer`
+@media (min-width: 450.1px) {
   width: 100%;
   height: 4em;
   padding: 0 3em;
@@ -16,7 +17,24 @@ const FooterC = styled.footer`
      a{
          margin-right: 1em
      }
+     
   }
+}
+@media (max-width: 450px) { width: 100%;
+  height: 4em;
+
+  display:grid;
+  place-items: center;
+  
+  .container-social{
+    width: 50%;
+      display: flex;
+     justify-content: space-between;
+     align-items: center;
+    
+     
+  }}
+ 
 `;
 function Footer() {
   return (

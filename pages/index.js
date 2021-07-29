@@ -2,7 +2,25 @@ import Head from "next/head";
 import Image from "next/image";
 import HeadHero from "../components/home/head";
 import Articles from "../components/home/articles";
-export default function Home() {
+
+
+import { groq } from "next-sanity";
+
+import { getClient } from "../lib/sanity.server";
+
+const postQuery = groq`
+  *[_type == "post" ][0..4] {
+    _id,
+    title,
+  description,
+    mainImage,
+    body,
+    slug,
+    
+  }
+`;
+export default function Home({data}) {
+ 
   return (
     <div>
       <Head>
@@ -11,7 +29,19 @@ export default function Home() {
        
       </Head>
       <HeadHero />
-      <Articles/>
+      <Articles data={data}/>
     </div>
   );
+}
+
+
+export async function getStaticProps({  preview = false }) {
+  const post = await getClient(preview).fetch(postQuery);
+console.log('hola',post);
+  return {
+    props: {
+      preview,
+      data:post,
+    },
+  };
 }
