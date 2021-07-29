@@ -74,7 +74,7 @@ function Post({ data, preview }) {
 
   return (
     <PostC>
-     {post&& <article>
+     { <article>
         <div className="post-content">
           <h2>{title}</h2>
           <figure>
@@ -112,13 +112,13 @@ export async function getStaticProps({ params, preview = false }) {
   };
 }
 
-// export async function getStaticPaths() {
-//   const paths = await getClient().fetch(
-//     groq`*[_type == "post" && defined(slug.current)][].slug.current`
-//   );
+export async function getStaticPaths() {
+  const paths = await getClient().fetch(
+    groq`*[_type == "post" && defined(slug.current)][].slug.current`
+  );
 
-//   return {
-//     paths: paths.map((slug) => ({ params: { slug } })),
-//     fallback: true,
-//   };
-// }
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: true,
+  };
+}
