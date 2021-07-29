@@ -89,6 +89,11 @@ function Post({ data, preview }) {
 
 export default Post;
 export async function getStaticProps({ params, preview = false }) {
+  if (!params.slug ||params.slug==='') {
+    return {
+      notFound: true,
+    };
+  }
   const post = await getClient(preview).fetch(postQuery, {
     slug: params.slug,
   });
