@@ -153,7 +153,7 @@ function About() {
           <div className="container-icons">
             <a
               className="link_icons"
-              target="_blank"
+              rel="noreferrer"
               href="https://facebook.com/pamshojs"
             >
               <div className="container-icon">
@@ -167,7 +167,7 @@ function About() {
             </a>
             <a
               className="link_icons"
-              target="_blank"
+              rel="noreferrer"
               href="https://www.instagram.com/pamsho_js/"
             >
               <div className="container-icon">
@@ -181,7 +181,7 @@ function About() {
             </a>
             <a
               className="link_icons"
-              target="_blank"
+              rel="noreferrer"
               href="https://www.github.com/pamsho09/"
             >
               <div className="container-icon">
@@ -195,7 +195,7 @@ function About() {
             </a>
             <a
               className="link_icons"
-              target="_blank"
+              rel="noreferrer"
               href="https://www.twitch.com/pamsho_js/"
             >
               <div className="container-icon">
@@ -209,7 +209,7 @@ function About() {
             </a>
             <a
               className="link_icons"
-              target="_blank"
+              rel="noreferrer"
               href="https://www.tiktok.com/@pamsho_js/"
             >
               <div className="container-icon">
