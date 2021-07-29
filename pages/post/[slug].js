@@ -74,7 +74,7 @@ function Post({ data, preview }) {
 
   return (
     <PostC>
-      <article>
+     {post&& <article>
         <div className="post-content">
           <h2>{title}</h2>
           <figure>
@@ -82,7 +82,7 @@ function Post({ data, preview }) {
           </figure>
           <PortableText blocks={body} />
         </div>
-      </article>
+      </article>}
     </PostC>
   );
 }
