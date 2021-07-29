@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ErrorPage from "next/error";
 import { useRouter } from "next/router";
 import { groq } from "next-sanity";
+import Image from "next/image";
 import {
 
   usePreviewSubscription,
@@ -61,7 +62,7 @@ function Post({ data, preview }) {
   const { data: post } = usePreviewSubscription(postQuery, {
     params: { slug: data.post?.slug },
     initialData: data.post,
-    
+
     enabled: preview && data.post?.slug,
   });
 
@@ -77,7 +78,7 @@ function Post({ data, preview }) {
         <div className="post-content">
           <h2>{title}</h2>
           <figure>
-            <img src={urlFor(mainImage).url()} />
+            <Image width={0} height={0} src={urlFor(mainImage).url()} />
           </figure>
           <PortableText blocks={body} />
         </div>

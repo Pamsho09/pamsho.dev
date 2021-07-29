@@ -48,7 +48,7 @@ function Footer() {
         <a
           rel="noreferrer"
           href="https://www.instagram.com/pamsho_js"
-          target="_blank"
+       rel="noreferrer"
           className="social-fb"
         >
           <Image src="/icons/instagram.svg" width={20} height={20} alt="instagram"/>
@@ -56,7 +56,7 @@ function Footer() {
         <a
           rel="noreferrer"
           href="https://www.linkedin.com/in/pamsho-js/"
-          target="_blank"
+       rel="noreferrer"
           className="social-tw"
         >
           <Image src="/icons/linkedin.svg" width={20} height={20} alt="linkedin" />{" "}
@@ -64,7 +64,7 @@ function Footer() {
         <a
           rel="noreferrer"
           href="https://github.com/Pamsho09"
-          target="_blank"
+       rel="noreferrer"
           className="social-ig"
         >
           <Image src="/icons/github.svg" width={20} height={20}  alt="Twitter"/>{" "}

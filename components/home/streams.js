@@ -111,9 +111,9 @@ function Streams() {
           <a>Vamos a twitch</a>
         </Link>
       </div>
-      <iframe
+      <iframe 
         src="https://player.twitch.tv/?channel=pamsho_js&amp;parent=localhost"
-        frameborder="0"
+        frameBorder="0"
         allowfullscreen="true"
         scrolling="no"
       ></iframe>
