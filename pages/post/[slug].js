@@ -93,7 +93,7 @@ export async function getStaticProps({ params, preview = false }) {
     slug: params.slug,
   });
 
-  if (!posts ||posts.length===0) {
+  if (!post ||post.length===0) {
     return {
       notFound: true,
     };
