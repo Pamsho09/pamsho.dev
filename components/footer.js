@@ -44,7 +44,7 @@ function Footer() {
       </div>
       <div className="container-social">
         <a
-          rel="noreferrer"
+     
           href="https://www.instagram.com/pamsho_js"
           rel="noreferrer"
           className="social-fb"
@@ -57,7 +57,7 @@ function Footer() {
           />
         </a>
         <a
-          rel="noreferrer"
+         
           href="https://www.linkedin.com/in/pamsho-js/"
           rel="noreferrer"
           className="social-tw"
@@ -70,7 +70,7 @@ function Footer() {
           />{" "}
         </a>
         <a
-          rel="noreferrer"
+      
           href="https://github.com/Pamsho09"
           rel="noreferrer"
           className="social-ig"
