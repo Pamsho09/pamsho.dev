@@ -61,6 +61,7 @@ function Post({ data, preview }) {
   const { data: post } = usePreviewSubscription(postQuery, {
     params: { slug: data.post?.slug },
     initialData: data.post,
+    
     enabled: preview && data.post?.slug,
   });
 
