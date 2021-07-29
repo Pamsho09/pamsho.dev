@@ -37,7 +37,7 @@ export default function Home({data}) {
 
 export async function getStaticProps({  preview = false }) {
   const post = await getClient(preview).fetch(postQuery);
-console.log('hola',post);
+
   return {
     props: {
       preview,

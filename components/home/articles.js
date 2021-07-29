@@ -25,7 +25,7 @@ const ArticlesC = styled.div`
 `;
 
 function Articles({ data }) {
-  console.log(data);
+ 
   return (
     <ArticlesC>
       {data.length>0 && data.map((e,index) => {

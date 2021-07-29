@@ -78,7 +78,7 @@ const CardC = styled.div`
   }
 `;
 function Card(props) {
-  console.log(props);
+  (props);
 
   return (
     <CardC>

@@ -31,7 +31,7 @@ grid-template-columns: 1fr ;
 
 `   
 function Index({data}) {
-    console.log(data)
+   
     return (
         <Blog>
             {data.map(post => (<Card key={post._id} {...post} />))}
@@ -45,7 +45,7 @@ function Index({data}) {
 export default Index
 export async function getStaticProps({  preview = false }) {
     const post = await getClient(preview).fetch(postQuery);
-  console.log('hola',post);
+ 
     return {
       props: {
         preview,
