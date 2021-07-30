@@ -4,7 +4,8 @@ import ErrorPage from "next/error";
 import { useRouter } from "next/router";
 import { groq } from "next-sanity";
 import Image from "next/image";
-import {
+import {Seo } from "../../components/seo"
+ import {
 
   usePreviewSubscription,
   urlFor,
@@ -22,6 +23,7 @@ const postQuery = groq`
       _id,
       title
     },
+    
     "slug": slug.current
   }
 `;
@@ -70,11 +72,13 @@ function Post({ data, preview }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const { title, mainImage, body } = post;
+  const { title, mainImage, body,slug } = post;
 
   return (
     <PostC>
-     { <article>
+      
+      <article>
+      {/* <Seo title={title}  url={'pamsho.dev/post/'+slug} img={urlFor(mainImage).url()}/> */}
         <div className="post-content">
           <h2>{title}</h2>
           <figure>
@@ -82,7 +86,7 @@ function Post({ data, preview }) {
           </figure>
           <PortableText blocks={body} />
         </div>
-      </article>}
+      </article>
     </PostC>
   );
 }

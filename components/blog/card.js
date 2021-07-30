@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "../../lib/sanity";
+import {convertDate} from "../../lib/utils"
 import styled from "styled-components";
 const CardC = styled.div`
   width: 100%;
@@ -79,11 +80,11 @@ const CardC = styled.div`
 `;
 function Card(props) {
   (props);
-
+let date=convertDate(props.publishedAt);
   return (
     <CardC>
       <div className="container-text">
-        <Link href={`/${props.slug.current}`}>
+        <Link href={`/post/${props.slug.current}`}>
           <a>
             {" "}
             <h4>{props.title}</h4>
@@ -91,7 +92,7 @@ function Card(props) {
         </Link>
 
         <div className="date">
-          <span>May 20th 2020</span>
+          <span>{date}</span>
         </div>
       </div>
       <div className="card-image">

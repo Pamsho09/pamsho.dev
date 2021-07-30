@@ -58,6 +58,7 @@ const AboutC = styled.div`
             align-items: center;
             justify-content: space-between;
             width: 100%;
+            padding:0  0.5em;
             img {
               width: 2em;
               height: 2em;
@@ -106,8 +107,7 @@ const AboutC = styled.div`
           color: #000;
 
           border-radius: 10px;
-          background: #ffffff;
-          box-shadow: 20px 20px 60px #c4c4c4, -20px -20px 60px #ffffff;
+         border: 3px solid #d6d6d6;
           display: flex;
           align-items: center;
           justify-content: center;

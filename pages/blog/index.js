@@ -13,7 +13,7 @@ const postQuery = groq`
     mainImage,
     body,
     slug,
-    
+    publishedAt,
   }
 `;
 const Blog = styled.div` 

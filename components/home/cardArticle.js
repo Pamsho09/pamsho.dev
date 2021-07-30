@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "../../lib/sanity";
+import {convertDate}from "../../lib/utils"
 const Card = styled.div`
   @media (min-width: 450.1px) {
     width: 100%;
@@ -173,7 +174,9 @@ const Card = styled.div`
 `;
 function CardArticle({ data, head }) {
 
-  const {  title, content, date, mainImage ,slug} = data;
+  const {  title, content, mainImage ,slug,publishedAt} = data;
+ 
+ let date=convertDate(publishedAt)
   return (
     <Card head={head}>
       <div className="container-text">
@@ -181,7 +184,7 @@ function CardArticle({ data, head }) {
 
         <p></p>
         <div className="date">
-          <span>May 20th 2020</span>
+          <span>{date}</span>
           <Link href={`/post/${slug.current}`}>
             <a>Read more</a>
           </Link>

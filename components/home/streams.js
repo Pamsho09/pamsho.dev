@@ -114,7 +114,7 @@ function Streams() {
       <iframe 
         src="https://player.twitch.tv/?channel=pamsho_js&amp;parent=localhost"
         frameBorder="0"
-        allowFullScreen="true"
+        allowFullScreen={true}
         scrolling="no"
       ></iframe>
     </StreamsC>
