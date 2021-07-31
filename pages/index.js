@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import HeadHero from "../components/home/head";
 import Articles from "../components/home/articles";
-
+import {config} from "../lib/config"
 
 import { groq } from "next-sanity";
 
@@ -20,7 +20,7 @@ const postQuery = groq`
     
   }
 `;
-export default function Home({data}) {
+export default function Home({data,domain}) {
  
   return (
     <div>
@@ -30,7 +30,7 @@ export default function Home({data}) {
        
       </Head>
       <HeadHero />
-      <Articles data={data}/>
+      <Articles data={data} domain={domain}/>
     </div>
   );
 }
@@ -43,6 +43,7 @@ export async function getStaticProps({  preview = false }) {
     props: {
       preview,
       data:post,
+      domain: config.domain,
     },
   };
 }

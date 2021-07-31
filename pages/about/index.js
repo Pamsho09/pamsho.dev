@@ -124,6 +124,7 @@ const AboutC = styled.div`
   }
 `;
 function About() {
+  
   return (
     <AboutC>
       <div className="profile">

@@ -24,7 +24,7 @@ const ArticlesC = styled.div`
   }
 `;
 
-function Articles({ data }) {
+function Articles({ data,domain }) {
  
   return (
     <ArticlesC>
@@ -33,7 +33,7 @@ function Articles({ data }) {
         return <CardArticle key={index} head={index ==0} data={e} />;
       })}
 
-      <Streams />
+      <Streams domain={domain} />
     </ArticlesC>
   );
 }

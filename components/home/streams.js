@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { config } from "../../lib/config";
 const StreamsC = styled.div`
   @media (min-width: 450.1px) {
     width: 100%;
@@ -96,7 +97,9 @@ const StreamsC = styled.div`
     }
   }
 `;
-function Streams() {
+function Streams({domain}) {
+
+  console.log(domain);
   return (
     <StreamsC>
       <div className="container">
@@ -112,7 +115,7 @@ function Streams() {
         </Link>
       </div>
       <iframe 
-        src="https://player.twitch.tv/?channel=pamsho_js&amp;parent=localhost"
+        src={`https://player.twitch.tv/?channel=pamsho_js&amp;parent=${domain}`}
         frameBorder="0"
         allowFullScreen={true}
         scrolling="no"
