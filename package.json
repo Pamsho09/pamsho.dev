@@ -6,7 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --ext .tsx,.ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+      
+    }
+  },
+  "lint-staged": {
+    "*.@(ts|tsx)": [
+      "yarn lint"
+    ]
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
@@ -21,8 +32,17 @@
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
+    "@tinkin/eslint-config": "0.2.25",
     "babel-plugin-styled-components": "^1.13.2",
-    "eslint": "7.31.0",
-    "eslint-config-next": "11.0.1"
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.4.2",
+    "jest-watch-typeahead": "^0.6.1",
+    "lint-staged": "^10.0.10",
+    "prettier": "^2.0.2",
+    "typescript": "^4.3.2"
   }
 }
