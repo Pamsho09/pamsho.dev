@@ -6,11 +6,11 @@ export const convertDate = (dates) => {
   const year = date.getFullYear()
 
   const minimunMont = 10
-  if (date.getMonth() + 1 < minimunMont) {
-    month = `0${month}`
+  if (date.getMonth() < minimunMont) {
+    month = `0${date.getMonth()}`
   }
-  if (date.getDate()) {
-    day = `0${day}`
+  if (date.getDay()) {
+    day = `0${date.getDay()}`
   }
   return `${year}-${month}-${day}`
 }

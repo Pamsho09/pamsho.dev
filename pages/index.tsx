@@ -11,7 +11,6 @@ const postQuery = groq`
   *[_type == "post" ][0..4] {
     _id,
     title,
-  description,
     mainImage,
     body,
     slug,

@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+// eslint-disable-next-line import/default
 import Image from 'next/image'
 import Link from 'next/link'
 import { urlFor } from '../../lib/sanity'
 import { convertDate } from '../../lib/utils'
 const Card = styled.div`
+  ${(props: any) => !props.head && ' padding-bottom: 21px;'}
   @media (min-width: 450.1px) {
     width: 100%;
     grid-column: ${(props: any) => props.head && ` 1/4`};
@@ -23,12 +25,14 @@ const Card = styled.div`
     justify-content: space-between;
     .container-text {
       display: grid;
-      padding: 43px 53px;
+      display: grid;
+      padding: 0px 19px;
+
       h4 {
         font-family: Inter;
         font-style: normal;
         font-weight: bold;
-        font-size: 30px;
+        font-size: 20px;
         line-height: 36px;
 
         margin: 0px;
@@ -36,6 +40,9 @@ const Card = styled.div`
       }
       p {
         width: ${(props: any) => (props.head ? '403px' : '258px')};
+        max-height: 85px;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-family: Inter;
         font-style: normal;
         font-weight: normal;
@@ -104,12 +111,13 @@ const Card = styled.div`
     justify-content: space-between;
     .container-text {
       display: grid;
-      padding: 43px 53px;
+      padding: 0px 19px;
+
       h4 {
         font-family: Inter;
         font-style: normal;
         font-weight: bold;
-        font-size: 30px;
+        font-size: 20px;
         line-height: 36px;
 
         margin: 0px;
@@ -117,6 +125,9 @@ const Card = styled.div`
       }
       p {
         width: 258px;
+        max-height: 85px;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-family: Inter;
         font-style: normal;
         font-weight: normal;
@@ -174,7 +185,7 @@ const Card = styled.div`
 `
 interface Idata {
   title: string
-  description: string
+  body: any
   mainImage: any
   slug: any
   publishedAt: string
@@ -184,8 +195,8 @@ interface Iprops {
   head: boolean
 }
 const CardArticle = ({ data, head }: Iprops): JSX.Element => {
-  const { title, description, mainImage, slug, publishedAt } = data
-
+  const { title, body, mainImage, slug, publishedAt } = data
+  console.log(body)
   const date = convertDate(publishedAt)
 
   const widthMovil = 297
@@ -198,7 +209,7 @@ const CardArticle = ({ data, head }: Iprops): JSX.Element => {
       <div className="container-text">
         <h4>{title}</h4>
 
-        <p></p>
+        <p>{body[2] && body[2].children[0].text}</p>
         <div className="date">
           <span>{date}</span>
           <Link href={`/post/${slug.current}`}>

@@ -28,20 +28,18 @@ const Blog = styled.div`
     grid-template-columns: 1fr;
   }
 `
-function Index({ data }: any) {
-  return (
-    <Blog>
-      {data.map(
-        (post: any): JSX.Element => (
-          <Card key={post._id} {...post} />
-        )
-      )}
-    </Blog>
-  )
-}
+const Index = ({ data }: any): JSX.Element => (
+  <Blog>
+    {data.map(
+      (post: any): JSX.Element => (
+        <Card key={post['_id']} {...post} />
+      )
+    )}
+  </Blog>
+)
 
 export default Index
-export const getStaticProps = ({ preview = false }) => {
+export const getStaticProps = async ({ preview = false }) => {
   const post = await getClient(preview).fetch(postQuery)
 
   return {
