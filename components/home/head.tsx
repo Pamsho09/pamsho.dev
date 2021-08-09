@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+// eslint-disable-next-line import/default
 import Image from 'next/image'
 const Head = styled.div`
   @media (min-width: 450.1px) {

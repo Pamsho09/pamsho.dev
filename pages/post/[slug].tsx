@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 import { groq } from 'next-sanity'
+// eslint-disable-next-line import/default
 import Image from 'next/image'
-import { Seo } from '../../components/seo'
+import Seo from '../../components/seo'
 import { usePreviewSubscription, urlFor, PortableText } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
 
@@ -64,15 +65,16 @@ const Post = ({ data, preview }: any) => {
   }
 
   const { title, mainImage, body, slug } = post
-
+  const imgUrl = urlFor(mainImage).url()
   return (
     <PostC>
+      <Seo title={title} img={imgUrl} url={slug} />
       <article>
         {/* <Seo title={title}  url={'pamsho.dev/post/'+slug} img={urlFor(mainImage).url()}/> */}
         <div className="post-content">
           <h2>{title}</h2>
           <figure>
-            <Image width={0} height={0} src={urlFor(mainImage).url()} />
+            <Image width={0} height={0} src={imgUrl} />
           </figure>
           <PortableText blocks={body} />
         </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+// eslint-disable-next-line import/default
 import Image from 'next/image'
 import Link from 'next/link'
 import { urlFor } from '../../lib/sanity'
@@ -32,7 +33,7 @@ const CardC = styled.div`
       font-family: Inter;
       font-style: normal;
       font-weight: bold;
-      font-size: 30px;
+      font-size: 20px;
       line-height: 36px;
 
       margin: 0px;
@@ -75,10 +76,11 @@ const CardC = styled.div`
       margin: auto;
       min-width: 297px;
       min-height: 179px;
+      border-radius: 10px;
     }
   }
 `
-const Card = (props: any) => {
+const Card = (props: any): JSX.Element => {
   const date = convertDate(props.publishedAt)
   return (
     <CardC>
