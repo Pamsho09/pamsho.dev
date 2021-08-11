@@ -196,7 +196,7 @@ interface Iprops {
 }
 const CardArticle = ({ data, head }: Iprops): JSX.Element => {
   const { title, body, mainImage, slug, publishedAt } = data
-  console.log(body)
+
   const date = convertDate(publishedAt)
 
   const widthMovil = 297

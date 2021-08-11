@@ -66,7 +66,7 @@ const HeadHero = (): JSX.Element => (
     <div className="container">
       <div className="container-hero">
         <h1>Bienvenido a pamsho.dev</h1>
-        <p>Aprende a programar sin miedo.</p>
+        <p>No soy el mejor pero te puedo ayudar.</p>
       </div>
       <div className="container-img">
         <Image width={460} height={320} src="/icons/men.svg" alt="man" />
