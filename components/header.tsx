@@ -120,7 +120,7 @@ const Header = (): JSX.Element => (
             <li>Blog</li>
           </a>
         </Link>
-        <Link href="/proyectos">
+        <Link href="/projects">
           <a>
             <li>Proyectos</li>
           </a>
