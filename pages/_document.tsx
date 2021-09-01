@@ -4,6 +4,7 @@ import { ServerStyleSheet } from 'styled-components'
 interface Props {
   styleTags: any
 }
+
 export default class MyDocument extends Document<Props> {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet()

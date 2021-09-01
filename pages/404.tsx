@@ -1,6 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
-import styled, { keyframes } from 'styled-components'
-
+import styled from 'styled-components'
+import React from 'react'
 const NotFound = styled.div`
   width: 80%;
   margin: auto;

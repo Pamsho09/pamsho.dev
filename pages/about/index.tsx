@@ -194,7 +194,7 @@ const About = () => (
           <a
             className="link_icons"
             rel="noreferrer"
-            href="https://www.twitch.com/pamsho_js/"
+            href="https://www.twitch.com/pamsho_dev/"
           >
             <div className="container-icon">
               <Image
@@ -208,7 +208,7 @@ const About = () => (
           <a
             className="link_icons"
             rel="noreferrer"
-            href="https://www.tiktok.com/@pamsho_js/"
+            href="https://www.tiktok.com/@pamsho_dev/"
           >
             <div className="container-icon">
               <Image

@@ -39,7 +39,7 @@ const Footer = (): JSX.Element => (
   <FooterC>
     <div className="container">
       <span>
-        <b>Pamsho_js</b> 2020 copyright all rights reserved
+        <b>Pamsho_dev</b> 2020 copyright all rights reserved
       </span>
     </div>
     <div className="container-social">

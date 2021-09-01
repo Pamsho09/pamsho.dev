@@ -115,7 +115,7 @@ const Streams = ({ domain }: Iprops): JSX.Element => (
       </Link>
     </div>
     <iframe
-      src={`https://player.twitch.tv/?channel=pamsho_js&parent=${domain}`}
+      src={`https://player.twitch.tv/?channel=pamsho_dev&parent=${domain}`}
       frameBorder="0"
       allowFullScreen={true}
       scrolling="no"
