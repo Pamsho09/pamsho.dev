@@ -109,7 +109,7 @@ interface IData {
   urlRepo: string
   urlDemo: string
 }
-interface Props {
+interface IProps {
   data: IData
   click: () => void
 }
