@@ -219,6 +219,20 @@ const About = () => (
               <span>tiktok</span>
             </div>
           </a>
+           <a
+            className="link_icons"
+            rel="noreferrer"
+            href="https://copytrade.page.link/ibyc"
+          >
+            <div className="container-icon">
+              <Image
+                src="/icons/tiktok/tiktok-icon.svg"
+                width={30}
+                height={30}
+              />
+              <span>Haz dinero con esta sencilla apliacion xd</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
