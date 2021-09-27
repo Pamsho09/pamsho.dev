@@ -44,7 +44,7 @@ const Footer = (): JSX.Element => (
     </div>
     <div className="container-social">
       <a
-        href="https://www.instagram.com/pamsho_js"
+        href="https://www.instagram.com/pamsho_dev"
         rel="noreferrer"
         className="social-fb"
       >

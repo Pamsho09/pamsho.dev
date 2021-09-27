@@ -8,7 +8,7 @@ const AboutC = styled.div`
     min-height: 80vh;
     display: grid;
     grid-template-columns: 30% 70%;
-
+    place-items: center;
     padding-top: 1em;
     .profile {
       display: flex;
@@ -39,32 +39,8 @@ const AboutC = styled.div`
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         .link_icons {
-          margin: 1em 1em;
-          height: auto;
+          margin: 5px;
           text-decoration: none;
-          text-transform: capitalize;
-          font-weight: bold;
-          color: #000;
-
-          border-radius: 10px;
-
-          background: #ffffff;
-          box-shadow: 20px 20px 60px #cfcfcf, -20px -20px 60px #ffffff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          .container-icon {
-            height: 3em;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            padding: 0 0.5em;
-            img {
-              width: 2em;
-              height: 2em;
-            }
-          }
         }
       }
     }
@@ -99,31 +75,91 @@ const AboutC = styled.div`
         display: grid;
         grid-template-columns: 1fr;
         .link_icons {
-          margin: 1em 0;
-          height: auto;
+          margin: 5px 0;
           text-decoration: none;
-          text-transform: capitalize;
-          font-weight: bold;
-          color: #000;
-
-          border-radius: 10px;
-          border: 3px solid #d6d6d6;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          .container-icon {
-            height: 3em;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 80%;
-          }
         }
       }
     }
   }
 `
-const About = () => (
+
+const ContainerIcons = styled.div`
+  @media (min-width: 450.1px) {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    background-color: ${(props) => props.color};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    span {
+      color: #ffffff;
+      text-transform: capitalize;
+      font-weight: bold;
+    }
+  }
+  @media (max-width: 450px) {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    background-color: ${(props) => props.color};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    span {
+      color: #ffffff;
+      text-transform: capitalize;
+      font-weight: bold;
+    }
+  }
+`
+interface ISocial {
+  name: string
+  url: string
+  color: string
+  icon: string
+}
+const socialMedia: ISocial[] = [
+  {
+    name: 'Facebook',
+    url: 'https://www.facebook.com/pamshoDev',
+    color: '#1877f2',
+    icon: 'facebook',
+  },
+  {
+    name: 'instagram',
+    url: 'https://www.instagram.com/pamsho_dev/',
+    color: '#c32aa3',
+    icon: 'instagram',
+  },
+  {
+    name: 'github',
+    url: 'https://www.github.com/pamsho09/',
+    color: '#333',
+    icon: 'github',
+  },
+  {
+    name: 'twitch',
+    url: 'https://www.twitch.com/pamsho_dev/',
+    color: '#9146ff',
+    icon: 'twitch',
+  },
+  {
+    name: 'tiktok',
+    url: 'https://www.tiktok.com/@pamsho_dev/',
+    color: '#ee1d52',
+    icon: 'tiktok',
+  },
+  {
+    name: 'OctaFx',
+    url: 'https://copytrade.page.link/ibyc',
+    color: '#34a853',
+    icon: 'default',
+  },
+]
+const About = (): JSX.Element => (
   <AboutC>
     <div className="profile">
       <Image
@@ -149,90 +185,26 @@ const About = () => (
       <div className="social">
         <h3>Puedes seguirme en mis redes sociales uwu.</h3>
         <div className="container-icons">
-          <a
-            className="link_icons"
-            rel="noreferrer"
-            href="https://facebook.com/pamshojs"
-          >
-            <div className="container-icon">
-              <Image
-                src="/icons/tiktok/facebook-icon.svg"
-                width={30}
-                height={30}
-              />
-              <span>facebook</span>
-            </div>
-          </a>
-          <a
-            className="link_icons"
-            rel="noreferrer"
-            href="https://www.instagram.com/pamsho_js/"
-          >
-            <div className="container-icon">
-              <Image
-                src="/icons/tiktok/instagram-icon.svg"
-                width={30}
-                height={30}
-              />
-              <span>instagram</span>
-            </div>
-          </a>
-          <a
-            className="link_icons"
-            rel="noreferrer"
-            href="https://www.github.com/pamsho09/"
-          >
-            <div className="container-icon">
-              <Image
-                src="/icons/tiktok/github-icon.svg"
-                width={30}
-                height={30}
-              />
-              <span>github</span>
-            </div>
-          </a>
-          <a
-            className="link_icons"
-            rel="noreferrer"
-            href="https://www.twitch.com/pamsho_dev/"
-          >
-            <div className="container-icon">
-              <Image
-                src="/icons/tiktok/twitch-purple-icon.svg"
-                width={30}
-                height={30}
-              />
-              <span>twitch</span>
-            </div>
-          </a>
-          <a
-            className="link_icons"
-            rel="noreferrer"
-            href="https://www.tiktok.com/@pamsho_dev/"
-          >
-            <div className="container-icon">
-              <Image
-                src="/icons/tiktok/tiktok-icon.svg"
-                width={30}
-                height={30}
-              />
-              <span>tiktok</span>
-            </div>
-          </a>
-           <a
-            className="link_icons"
-            rel="noreferrer"
-            href="https://copytrade.page.link/ibyc"
-          >
-            <div className="container-icon">
-              <Image
-                src="/icons/tiktok/tiktok-icon.svg"
-                width={30}
-                height={30}
-              />
-              <span>Haz dinero con esta sencilla apliacion xd</span>
-            </div>
-          </a>
+          {socialMedia.map((social: ISocial) => (
+            <>
+              <a
+                key={social.name}
+                className="link_icons"
+                rel="noreferrer"
+                target="_blank"
+                href={social.url}
+              >
+                <ContainerIcons color={social.color}>
+                  <Image
+                    src={`/icons/tiktok/${social.icon.toLowerCase()}.svg`}
+                    width={30}
+                    height={30}
+                  />
+                  <span>{social.name}</span>
+                </ContainerIcons>
+              </a>
+            </>
+          ))}
         </div>
       </div>
     </div>
