@@ -68,7 +68,7 @@ const Index = (props: IProps): JSX.Element => {
 }
 
 export default Index
-export const  getServerSideProps = async ({ preview = false }) => {
+export const getServerSideProps = async ({ preview = false }) => {
   const post = await getClient(preview).fetch(postQuery)
   return {
     props: {
