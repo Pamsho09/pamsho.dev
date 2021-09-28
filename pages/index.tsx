@@ -4,7 +4,6 @@ import Articles from '../components/home/articles'
 import { config } from '../lib/config'
 import React from 'react'
 import { groq } from 'next-sanity'
-
 import { getClient } from '../lib/sanity.server'
 
 const postQuery = groq`
@@ -29,7 +28,7 @@ const Home = ({ data, domain }: any): JSX.Element => (
   </div>
 )
 export default Home
-export const getStaticProps = async ({ preview = false }) => {
+export const getServerSideProps = async ({ preview = false }) => {
   const post = await getClient(preview).fetch(postQuery)
 
   return {
