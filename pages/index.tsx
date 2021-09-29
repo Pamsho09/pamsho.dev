@@ -20,10 +20,6 @@ const Home = ({ data, domain }: any): JSX.Element => (
   <div>
     <Head>
       <title>Pamsho.dev</title>
-      <script
-        src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-        async={true}
-      ></script>
     </Head>
     <HeadHero />
     <Articles data={data} domain={domain} />
