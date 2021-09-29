@@ -29,7 +29,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "public/firebaseConfig.js"  ],
+, "pages/_app.js"  ],
   "exclude": [
     "node_modules"
   ]

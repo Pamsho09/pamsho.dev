@@ -25,6 +25,8 @@ export default class MyDocument extends Document<Props> {
         <Head>
           {this.props.styleTags}
           <link rel="manifest" href="/manifest.json" />
+          <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
+
           <link
             rel="apple-touch-icon"
             sizes="57x57"
