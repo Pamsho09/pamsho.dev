@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 const CourseCardC = styled.div`
+  margin: 1em;
   width: 300px;
   height: 187px;
   position: relative;
+  cursor: pointer;
   .course-card__image {
     width: 100%;
     img {

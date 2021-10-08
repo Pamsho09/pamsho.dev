@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const Course = styled.div`
   width: 100%;
   padding: 1em;
+  min-height: 80vh;
   .container_cards {
     box-sizing: border-box;
     width: 100%;
