@@ -56,7 +56,7 @@ const HeaderContainer = styled.header`
   @media (max-width: 450px) {
     width: 100%;
     height: 3em;
-
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,16 +75,19 @@ const HeaderContainer = styled.header`
       text-decoration: none;
     }
     nav {
+      width: 100%;
+      overflow-x: scroll;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-
+      margin-left: 1em;
       margin-top: 1em;
       margin-bottom: 1em;
       ul {
+        width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
 
         list-style-type: none;
@@ -118,6 +121,11 @@ const Header = (): JSX.Element => (
         <Link href="/blog">
           <a>
             <li>Blog</li>
+          </a>
+        </Link>
+        <Link href="/course">
+          <a>
+            <li>Curso</li>
           </a>
         </Link>
         <Link href="/projects">
