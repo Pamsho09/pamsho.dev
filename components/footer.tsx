@@ -44,6 +44,7 @@ const Footer = (): JSX.Element => (
     </div>
     <div className="container-social">
       <a
+        target="_blank"
         href="https://www.instagram.com/pamsho_dev"
         rel="noreferrer"
         className="social-fb"
@@ -56,6 +57,7 @@ const Footer = (): JSX.Element => (
         />
       </a>
       <a
+        target="_blank"
         href="https://www.linkedin.com/in/pamsho-js/"
         rel="noreferrer"
         className="social-tw"
@@ -68,6 +70,7 @@ const Footer = (): JSX.Element => (
         />{' '}
       </a>
       <a
+        target="_blank"
         href="https://github.com/Pamsho09"
         rel="noreferrer"
         className="social-ig"
