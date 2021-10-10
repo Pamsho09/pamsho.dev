@@ -2,7 +2,7 @@
 
 
 ## 🕹 [Demo](http://Pamsho.dev/)
-Pamsho.dev es mi web personal en donde comparta experiencias, tutoriales y algunos a articulos el cual utiliza las tecnologias web
+Pamsho.dev es mi web personal en donde comparto mis experiencias, tutoriales y algunos a articulos el cual utiliza las tecnologias web
 tales como :
 - 🧱 WebPack
 - 📦 NPM
