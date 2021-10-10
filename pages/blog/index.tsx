@@ -16,6 +16,7 @@ const postQuery = groq`
     publishedAt,
   }
 `
+
 const Blog = styled.div`
   @media (min-width: 450.1px) {
     width: 100%;

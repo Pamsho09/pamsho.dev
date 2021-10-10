@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pamsho.dev
 
-## Getting Started
 
-First, run the development server:
+## 🕹 [Demo](http://Pamsho.dev/)
+Pamsho.dev es mi web personal en donde comparta experiencias, tutoriales y algunos a articulos el cual utiliza las tecnologias web
+tales como :
+- 🧱 WebPack
+- 📦 NPM
+- 🎫 TypeScript
+- 🎀 StyledComponents
+- ⚛ React
+- 🍐 NextJs
+- 👕 SanityJS
 
-```bash
-npm run dev
-# or
-yarn dev
+
+## Comenzando 🚀  
+
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+
+
+
+### Pre-requisitos 📋
+
+Para el buen funcionamiento del thema tanto en desarrollo como el producion se requiere contar con los siguientes requisitos:
+ - 🟢 node v14.17.0
+
+Tener levantado el entorno de sanity 
+
+
+### Instalación 🔧
+
+
+Para la instalacion manual del tema y poder manipularlo realizaremos lo siguiente:
+
+
+```
+git clone https://github.com/Pamsho09/pamsho.dev.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+cd pamsho.dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+instalamos todas las dependencias y levantamos el entorno de desarrollo
+```
+yarn install
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+y 
 
-## Learn More
+yarn start
+```
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+⌨️ con ❤️ por [Francisco Jimenez](https://github.com/pamsho09) 😊
