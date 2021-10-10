@@ -17,6 +17,7 @@ const postQuery = groq`
   }
 `
 const Blog = styled.div`
+  min-height: 80vh;
   @media (min-width: 450.1px) {
     width: 100%;
     display: grid;

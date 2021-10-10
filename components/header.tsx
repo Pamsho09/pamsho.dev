@@ -123,9 +123,9 @@ const Header = (): JSX.Element => (
             <li>Blog</li>
           </a>
         </Link>
-        <Link href="/course">
+        <Link href="/courses">
           <a>
-            <li>Curso</li>
+            <li>Cursos</li>
           </a>
         </Link>
         <Link href="/projects">

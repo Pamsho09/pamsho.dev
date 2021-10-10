@@ -64,7 +64,6 @@ const CardProject = ({
 }: IData): JSX.Element => {
   const handleCLick = () => {
     const data = { _id, image, name, bio, urlRepo, urlDemo }
-    console.log(data)
     click(data)
   }
   return (

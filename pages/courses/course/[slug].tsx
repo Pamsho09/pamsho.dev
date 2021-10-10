@@ -1,9 +1,14 @@
 import { CourseCard } from '@/components/course/card'
+import { urlFor } from '@/lib/sanity'
+import { getClient } from '@/lib/sanity.server'
+import { groq } from 'next-sanity'
+import { useRouter } from 'next/router'
 import React from 'react'
 import styled from 'styled-components'
 const CourseC = styled.div`
   width: 100%;
   padding: 1em;
+  min-height: 80vh;
   box-sizing: border-box;
   .container {
     width: 100%;
@@ -91,37 +96,28 @@ const CourseC = styled.div`
     }
   }
 `
-const Course = () => {
-  const dataCourse = {
-    title: 'Curso de React',
-    description: 'Curso de React',
-    image:
-      'https://images.ctfassets.net/51xdmtqw3t2p/7uZBRK6RYCqDyh3VJcCstt/fb73abd3fb2d1d82189163f84988f2eb/WEBHOOK4.jpg?w=1280&h=1080&q=50',
-  }
+const Course = ({ data }: any) => {
+  const router = useRouter()
   return (
     <CourseC>
       <div className="container">
         <div className="container-image">
-          <img
-            src="https://images.ctfassets.net/51xdmtqw3t2p/7uZBRK6RYCqDyh3VJcCstt/fb73abd3fb2d1d82189163f84988f2eb/WEBHOOK4.jpg?w=1280&h=1080&q=50"
-            alt=""
-          />
+          <img src={urlFor(data.image).url()} alt="" />
         </div>
         <div className="container-info">
-          <h1>Curso basico de react</h1>
-          <h4>Cursos en progreso</h4>
+          <h1>{data.title}</h1>
+          <h4>Estatus del curso : {data.status[0]}</h4>
 
           <div className="container-info-skills">
             <span className="container-content">
               Conocimientos basicos para el curso:
             </span>
             <div className="container-info-skill">
-              <span className="skill">HTML</span>
-              <span className="skill">JavaScript</span>
-              <span className="skill">HTML</span>
-              <span className="skill">JavaScript</span>
-              <span className="skill">HTML</span>
-              <span className="skill">JavaScript</span>
+              {data.skills.map((skill: any, index: number) => (
+                <span key={index} className="skill">
+                  {skill}
+                </span>
+              ))}
             </div>
           </div>
         </div>
@@ -129,14 +125,66 @@ const Course = () => {
       <div className="container-course">
         <h1 className="cours-title">Curso</h1>
         <div className="container-cards">
-          <CourseCard course={dataCourse} onClick={() => null} />
-          <CourseCard course={dataCourse} onClick={() => null} />
-          <CourseCard course={dataCourse} onClick={() => null} />
-          <CourseCard course={dataCourse} onClick={() => null} />
-          <CourseCard course={dataCourse} onClick={() => null} />
+          {data.video.map((item, index) => (
+            <CourseCard
+              key={item['_id']}
+              course={{
+                title: `Clase ${index + 1}`,
+                description: item.title,
+                image: urlFor(item.image).url(),
+              }}
+              onClick={() => router.push(`/courses/video/${item.slug.current}`)}
+            />
+          ))}
         </div>
       </div>
     </CourseC>
   )
 }
 export default Course
+const courseQuery = groq`
+  *[_type == "course" && slug.current == $slug][0] {
+    _id,
+    title,
+    status,
+    image,
+   "video":video[]->,
+   skills, 
+    "slug": slug.current
+  }
+`
+
+export const getStaticProps = async ({ params, preview = false }) => {
+  if (!params.slug || params.slug === '') {
+    return {
+      notFound: true,
+    }
+  }
+  const course = await getClient(preview).fetch(courseQuery, {
+    slug: params.slug,
+  })
+
+  if (!course || course.length === 0) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      preview,
+      data: { ...course },
+    },
+  }
+}
+
+export const getStaticPaths = async () => {
+  const paths = await getClient().fetch(
+    groq`*[_type == "course" && defined(slug.current)][].slug.current`
+  )
+
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: false,
+  }
+}

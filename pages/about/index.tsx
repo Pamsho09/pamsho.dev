@@ -2,6 +2,9 @@ import React from 'react'
 // eslint-disable-next-line import/default
 import Image from 'next/image'
 import styled from 'styled-components'
+import { getClient } from '@/lib/sanity.server'
+import { groq } from 'next-sanity'
+import { PortableText, urlFor } from '@/lib/sanity'
 const AboutC = styled.div`
   @media (min-width: 450.1px) {
     width: 100%;
@@ -121,71 +124,26 @@ interface ISocial {
   color: string
   icon: string
 }
-const socialMedia: ISocial[] = [
-  {
-    name: 'Facebook',
-    url: 'https://www.facebook.com/pamshoDev',
-    color: '#1877f2',
-    icon: 'facebook',
-  },
-  {
-    name: 'instagram',
-    url: 'https://www.instagram.com/pamsho_dev/',
-    color: '#c32aa3',
-    icon: 'instagram',
-  },
-  {
-    name: 'github',
-    url: 'https://www.github.com/pamsho09/',
-    color: '#333',
-    icon: 'github',
-  },
-  {
-    name: 'twitch',
-    url: 'https://www.twitch.com/pamsho_dev/',
-    color: '#9146ff',
-    icon: 'twitch',
-  },
-  {
-    name: 'tiktok',
-    url: 'https://www.tiktok.com/@pamsho_dev/',
-    color: '#ee1d52',
-    icon: 'tiktok',
-  },
-  {
-    name: 'OctaFx',
-    url: 'https://copytrade.page.link/ibyc',
-    color: '#34a853',
-    icon: 'default',
-  },
-]
-const About = (): JSX.Element => (
+
+const About = ({ data }: any): JSX.Element => (
   <AboutC>
     <div className="profile">
       <Image
         className="profile-image"
-        src="/icons/img-about.jpg"
+        src={urlFor(data.image).url()}
         width={300}
         height={300}
       />
-      <h1>Francisco Jimenez</h1>
+      <h1>{data.name}</h1>
     </div>
     <div className="profile-details">
-      <h4>Frontend Developer</h4>
-      <p>
-        Hola que tal me llamo Francisco soy un joven programador,que desde que
-        era pequeño me encantaba la tecnologia,con el paso del los años descubri
-        que lo que me apacionaba era la programacion actualmente me encanta el
-        la programacion web y me encuentro profundizando en este mundo desde el
-        frontend , el backend y devops en este sitio encontras una colecion de
-        las cosas que aprendo y en lo que trabajo desde apuntes personales,mis
-        proyectos personales y algunos cursos uwu.
-      </p>
+      <h4>{data.specialty}</h4>
+      <PortableText blocks={data.bio[0]} />
 
       <div className="social">
         <h3>Puedes seguirme en mis redes sociales uwu.</h3>
         <div className="container-icons">
-          {socialMedia.map((social: ISocial) => (
+          {data.social.map((social: ISocial) => (
             <>
               <a
                 key={social.name}
@@ -196,7 +154,7 @@ const About = (): JSX.Element => (
               >
                 <ContainerIcons color={social.color}>
                   <Image
-                    src={`/icons/tiktok/${social.icon.toLowerCase()}.svg`}
+                    src={urlFor(social.icon).url()}
                     width={30}
                     height={30}
                   />
@@ -212,3 +170,17 @@ const About = (): JSX.Element => (
 )
 
 export default About
+const Query = groq`
+*[_type == "author" ][0]{
+  bio,image,name,social,specialty
+}
+`
+export const getServerSideProps = async ({ preview = false }) => {
+  const data = await getClient(preview).fetch(Query)
+  return {
+    props: {
+      preview,
+      data,
+    },
+  }
+}

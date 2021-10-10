@@ -1,3 +1,7 @@
+import { PortableText } from '@/lib/sanity'
+import { getClient } from '@/lib/sanity.server'
+import { groq } from 'next-sanity'
+import { useRouter } from 'next/router'
 import React from 'react'
 import styled from 'styled-components'
 const VideoC = styled.div`
@@ -198,54 +202,97 @@ const VideoC = styled.div`
     }
   }
 `
-const Video = () => (
-  <VideoC>
-    <h1>Curso basico de react</h1>
-    <div className="container-resource">
-      <div className="container-resource-video">
-        <iframe
-          src="https://www.youtube.com/embed/QUmM8jdviLg"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      </div>
-      <div className="container-resource-bonus">
-        <div className="container-button">
-          <h4>Siguiente leccion</h4>
-          <span>Clase 2 : virtual Dom</span>
+const Video = ({ data }: any) => {
+  const router = useRouter()
+  return (
+    <VideoC>
+      <h1>Curso basico de react</h1>
+      <div className="container-resource">
+        <div className="container-resource-video">
+          <iframe
+            src={data.urlVideo}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
-        <h3>Recursos:</h3>
-        <ul className="list-resource">
-          <a href="https://es.reactjs.org/" target="_blank" rel="noreferrer">
-            <li>Doc react</li>
-          </a>
-          <a href="https://es.reactjs.org/" target="_blank" rel="noreferrer">
-            <li>Code demo</li>
-          </a>
-        </ul>
+        <div className="container-resource-bonus">
+          {data.nextVideo && (
+            <div
+              className="container-button"
+              onClick={() =>
+                router.push(`/courses/video/${data.nextVideo.slug.current}`)
+              }
+            >
+              <h4>Siguiente leccion</h4>
+              <span> {data.nextVideo.title}</span>
+            </div>
+          )}
+          <h3>Recursos:</h3>
+          <ul className="list-resource">
+            {data.resource.map((resource: any, index) => (
+              <a
+                key={index}
+                href={resource.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <li>{resource.name}</li>
+              </a>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
-    <div className="container-content">
-      <h1>Clase 1 : Que es react?</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-        qui officia deserunt mollit anim id est laborum.
-      </p>
-    </div>
-  </VideoC>
-)
+      <div className="container-content">
+        <PortableText blocks={data.body[0].body} />
+      </div>
+    </VideoC>
+  )
+}
 
 export default Video
+const videoQuery = groq`
+  *[_type == "video" && slug.current == $slug][0] {
+    title,
+    urlVideo,
+    resource,
+    "slug": slug.current,
+    "body" : body[]->,
+   "nextVideo": nextVideo->{title, slug}
+  }
+`
+
+export const getStaticProps = async ({ params, preview = false }) => {
+  if (!params.slug || params.slug === '') {
+    return {
+      notFound: true,
+    }
+  }
+  const video = await getClient(preview).fetch(videoQuery, {
+    slug: params.slug,
+  })
+
+  if (!video || video.length === 0) {
+    return {
+      notFound: true,
+    }
+  }
+  return {
+    props: {
+      preview,
+      data: { ...video },
+    },
+  }
+}
+
+export const getStaticPaths = async () => {
+  const paths = await getClient().fetch(
+    groq`*[_type == "video" && defined(slug.current)][].slug.current`
+  )
+
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: false,
+  }
+}

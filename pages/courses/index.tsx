@@ -1,5 +1,9 @@
 import { CourseCard } from '@/components/course/card'
 import { config } from '@/lib/config'
+import { urlFor } from '@/lib/sanity'
+import { getClient } from '@/lib/sanity.server'
+import { groq } from 'next-sanity'
+import { useRouter } from 'next/router'
 import React from 'react'
 import styled from 'styled-components'
 const Course = styled.div`
@@ -28,25 +32,39 @@ const Course = styled.div`
     width: 100%;
   }
 `
-const dataCourse = {
-  title: 'Curso de React',
-  description: 'Curso de React',
-  image:
-    'https://images.ctfassets.net/51xdmtqw3t2p/7uZBRK6RYCqDyh3VJcCstt/fb73abd3fb2d1d82189163f84988f2eb/WEBHOOK4.jpg?w=1280&h=1080&q=50',
-}
-const index = ({ status }: any) => {
-  console.log(status)
+const postQuery = groq`
+  *[_type == "course" ][0..10] {
+    _id,
+    title,
+    image,
+    status,
+    slug,
+    
+  }
+`
+
+const Index = ({ status, course }: any) => {
+  const router = useRouter()
+  console.log(course)
   return (
     <Course>
       <h3>Cursos</h3>
       <div className="container">
         {status === 'true' ? (
           <div className="container_cards">
-            <CourseCard course={dataCourse} onClick={() => null} />
-            <CourseCard course={dataCourse} onClick={() => null} />
-            <CourseCard course={dataCourse} onClick={() => null} />
-            <CourseCard course={dataCourse} onClick={() => null} />
-            <CourseCard course={dataCourse} onClick={() => null} />
+            {course.map((item: any) => (
+              <CourseCard
+                key={item['_id']}
+                course={{
+                  title: item.title,
+                  description: item.status[0],
+                  image: urlFor(item.image).url(),
+                }}
+                onClick={() =>
+                  router.push(`/courses/course/${item.slug.current}`)
+                }
+              />
+            ))}
           </div>
         ) : (
           <div className="cheems">
@@ -60,9 +78,14 @@ const index = ({ status }: any) => {
   )
 }
 
-export default index
-export const getServerSideProps = () => ({
-  props: {
-    status: config.course,
-  },
-})
+export default Index
+export const getServerSideProps = async ({ preview = false }) => {
+  const course = await getClient(preview).fetch(postQuery)
+
+  return {
+    props: {
+      course,
+      status: config.course,
+    },
+  }
+}
