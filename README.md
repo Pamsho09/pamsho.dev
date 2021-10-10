@@ -21,7 +21,7 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 
 ### Pre-requisitos 📋
 
-Para el buen funcionamiento del thema tanto en desarrollo como el producion se requiere contar con los siguientes requisitos:
+Para el buen funcionamiento del sitio tanto en desarrollo como el producion se requiere contar con los siguientes requisitos:
  - 🟢 node v14.17.0
 
 Tener levantado el entorno de sanity 
