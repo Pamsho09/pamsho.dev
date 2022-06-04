@@ -5,33 +5,7 @@ import { getClient } from '@/lib/sanity.server'
 import { groq } from 'next-sanity'
 import { useRouter } from 'next/router'
 import React from 'react'
-import styled from 'styled-components'
-const Course = styled.div`
-  width: 100%;
-  padding: 1em;
-  min-height: 90vh;
-  .container {
-    display: grid;
-    place-items: center;
-    .container_cards {
-      box-sizing: border-box;
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-    }
-    .cheems {
-      margin: auto;
-      display: grid;
-      place-items: center;
-      h2 {
-        margin: 0;
-      }
-    }
-    width: 100%;
-  }
-`
+
 const postQuery = groq`
   *[_type == "course" ][0..10] {
     _id,
@@ -45,13 +19,12 @@ const postQuery = groq`
 
 const Index = ({ status, course }: any) => {
   const router = useRouter()
-  console.log(course)
   return (
-    <Course>
-      <h3>Cursos</h3>
-      <div className="container">
+    <div className="w-full flex-1">
+      <h3 className="font-bold text-2xl">Cursos</h3>
+      <div className="grid place-items-center">
         {status === 'true' ? (
-          <div className="container_cards">
+          <div className="box-border w-full flex flex-wrap justify-start items-start w-full">
             {course.map((item: any) => (
               <CourseCard
                 key={item['_id']}
@@ -67,14 +40,14 @@ const Index = ({ status, course }: any) => {
             ))}
           </div>
         ) : (
-          <div className="cheems">
+          <div className="m-auto grid place-items-center">
             <img src="./not_course.jpg" alt="no hay c" />
-            <h2>Horita no hay cursos </h2>
-            <h3>De nada, vuelva pronto</h3>
+            <h2 className="m-0 font-bold">Horita no hay cursos </h2>
+            <h3 className="font-bold">De nada, vuelva pronto</h3>
           </div>
         )}
       </div>
-    </Course>
+    </div>
   )
 }
 

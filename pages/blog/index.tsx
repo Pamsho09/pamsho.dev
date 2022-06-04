@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import Card from '../../components/blog/card'
 import { groq } from 'next-sanity'
 
@@ -17,26 +16,14 @@ const postQuery = groq`
   }
 `
 
-const Blog = styled.div`
-  @media (min-width: 450.1px) {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  @media (max-width: 450px) {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-`
 const Index = ({ data }: any): JSX.Element => (
-  <Blog>
+  <div className="w-full  grid flex-1  grid-cols-1 md:grid-cols-3 h-full gap-8 mb-10">
     {data.map(
       (post: any): JSX.Element => (
         <Card key={post['_id']} {...post} />
       )
     )}
-  </Blog>
+  </div>
 )
 
 export default Index

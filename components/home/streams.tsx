@@ -1,126 +1,34 @@
 import React from 'react'
-import styled from 'styled-components'
-import Link from 'next/link'
-
-const StreamsC = styled.div`
-  @media (min-width: 450.1px) {
-    width: 100%;
-    display: grid;
-    grid-column: 1/4;
-    height: 500px;
-    place-items: center;
-    grid-template-columns: 1fr 1fr;
-    iframe {
-      width: 100%;
-      height: 500px;
-    }
-    .container {
-      width: 50%;
-      display: grid;
-      h1 {
-        font-weight: bold;
-        font-size: 34px;
-        line-height: 41px;
-
-        color: #000000;
-      }
-      p {
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 19px;
-
-        /* 600 */
-
-        color: #718096;
-      }
-      a {
-        background: #6b46c1;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 22px;
-        text-align: center;
-        padding: 13px 9px 13px 9px;
-        color: #ffffff;
-        max-width: 214px;
-        text-decoration: none;
-      }
-    }
-  }
-  @media (max-width: 450px) {
-    width: 100%;
-    display: grid;
-    grid-column: 1/4;
-    height: auto;
-    place-items: center;
-    gap: 0.5em;
-
-    iframe {
-      width: 100%;
-      height: 300px;
-    }
-    .container {
-      width: 80%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      h1 {
-        font-weight: bold;
-        font-size: 34px;
-        line-height: 41px;
-
-        color: #000000;
-      }
-      p {
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 19px;
-
-        /* 600 */
-
-        color: #718096;
-      }
-      a {
-        background: #6b46c1;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 22px;
-        text-align: center;
-        padding: 13px 9px 13px 9px;
-        color: #ffffff;
-        max-width: 214px;
-        text-decoration: none;
-      }
-    }
-  }
-`
 interface Iprops {
   domain: string
 }
 const Streams = ({ domain }: Iprops): JSX.Element => (
-  <StreamsC>
-    <div className="container">
-      <h1>Aprende en directo.</h1>
-      <p>
+  <div className="w-full grid col-start-1 col-end-4 place-items-center gap-2 md:grid-cols-2 mt-14">
+    <div className="w-80 md:w-full text-center flex flex-col justify-center items-center gap-6">
+      <h1 className="font-bold text-4xl">Aprende en directo.</h1>
+      <p className="font-normal text-base text-slate-500">
         Todos los dias apartir de las 20:30pm (GMT-5) me encuentro trasmitiendo
         en mi canal twitch en donde puedes aprender cosas nuevas y divertidas
         uwu
       </p>
 
-      <Link href="">
-        <a>Vamos a twitch</a>
-      </Link>
+      <a
+        className="bg-indigo-700 rounded-md font-bold text-lg text-white px-4 py-2 "
+        href="http://twitch.tv/pamsho_"
+        target={'_blank'}
+        rel="noreferrer"
+      >
+        Vamos a twitch
+      </a>
     </div>
     <iframe
-      src={`https://player.twitch.tv/?channel=pamsho_dev&parent=${domain}`}
+      className="w-full h-80"
+      src={`https://player.twitch.tv/?channel=pamsho_&parent=${domain}`}
       frameBorder="0"
       allowFullScreen={true}
       scrolling="no"
     ></iframe>
-  </StreamsC>
+  </div>
 )
 
 export default Streams

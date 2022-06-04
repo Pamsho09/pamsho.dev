@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 import { groq } from 'next-sanity'
@@ -23,33 +22,7 @@ const postQuery = groq`
     "slug": slug.current
   }
 `
-const PostC = styled.div`
-  width: 100%;
-  article {
-    margin: auto;
-    width: 100%;
-    .post-content {
-      width: 80%;
-      margin: auto;
-      display: grid;
-      place-content: center;
-      text-align: justify;
-      figure {
-        width: 100%;
-        margin: 0 auto;
-        img {
-          width: 100%;
-        }
-      }
-      div {
-        img {
-          width: 500px;
-          height: auto;
-        }
-      }
-    }
-  }
-`
+
 const Post = ({ data, preview }: any) => {
   const router = useRouter()
 
@@ -67,9 +40,9 @@ const Post = ({ data, preview }: any) => {
   const { title, mainImage, body, slug } = post
   const imgUrl = urlFor(mainImage).url()
   return (
-    <PostC>
+    <div className="w-full flex-1 ">
       <Seo title={title} img={imgUrl} url={slug} />
-      <article>
+      <article className="prose lg:prose-xl w-full">
         {/* <Seo title={title}  url={'pamsho.dev/post/'+slug} img={urlFor(mainImage).url()}/> */}
         <div className="post-content">
           <h2>{title}</h2>
@@ -79,7 +52,7 @@ const Post = ({ data, preview }: any) => {
           <PortableText blocks={body} />
         </div>
       </article>
-    </PostC>
+    </div>
   )
 }
 

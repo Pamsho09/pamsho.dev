@@ -10,20 +10,19 @@ const postQuery = groq`
     _id,
     title,
     mainImage,
-    body,
     slug,
     publishedAt
     
   }
 `
 const Home = ({ data, domain }: any): JSX.Element => (
-  <div>
+  <>
     <Head>
       <title>Pamsho.dev</title>
     </Head>
     <HeadHero />
     <Articles data={data} domain={domain} />
-  </div>
+  </>
 )
 export default Home
 export const getServerSideProps = async ({ preview = false }) => {

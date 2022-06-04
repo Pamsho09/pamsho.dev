@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { groq } from 'next-sanity'
 
 import { getClient } from '../../lib/sanity.server'
@@ -15,18 +14,6 @@ const postQuery = groq`
     urlRepo,
     urlDemo
 
-  }
-`
-const Projects = styled.div`
-  min-height: 80vh;
-  display: flex;
-  padding: 1em;
-  flex-wrap: wrap;
-
-  @media (max-width: 450px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 1em;
   }
 `
 interface IData {
@@ -55,7 +42,7 @@ const Index = (props: IProps): JSX.Element => {
     setModal({ state: !modal.state, project: data })
   }
   return (
-    <Projects>
+    <div className="flex-1 flex p-3 flex-wrap flex-col md:flex-row gap-4 justify-center items-center box-border ">
       {props.data.map((item) => (
         <>
           {' '}
@@ -63,7 +50,7 @@ const Index = (props: IProps): JSX.Element => {
         </>
       ))}
       {modal.state && <ModalProject click={handleClick} data={modal.project} />}
-    </Projects>
+    </div>
   )
 }
 

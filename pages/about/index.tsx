@@ -1,123 +1,10 @@
 import React from 'react'
 // eslint-disable-next-line import/default
 import Image from 'next/image'
-import styled from 'styled-components'
 import { getClient } from '@/lib/sanity.server'
 import { groq } from 'next-sanity'
 import { PortableText, urlFor } from '@/lib/sanity'
-const AboutC = styled.div`
-  @media (min-width: 450.1px) {
-    width: 100%;
-    min-height: 80vh;
-    display: grid;
-    grid-template-columns: 30% 70%;
-    place-items: center;
-    padding-top: 1em;
-    .profile {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    .profile-details {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-    .profile-image {
-      border-radius: 50%;
-      width: 200px;
-      height: auto;
-    }
-    p {
-      width: 80%;
-      text-align: justify;
-    }
-    .social {
-      width: 80%;
-      display: grid;
-      .container-icons {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        .link_icons {
-          margin: 5px;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-  @media (max-width: 450px) {
-    width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 1em;
-    .profile-details {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 1em;
-    }
-    .profile-image {
-      border-radius: 50%;
-      width: 200px;
-    }
-    p {
-      width: 80%;
-      text-align: justify;
-    }
-    .social {
-      width: 80%;
-      display: grid;
-      .container-icons {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr;
-        .link_icons {
-          margin: 5px 0;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-`
-
-const ContainerIcons = styled.div`
-  @media (min-width: 450.1px) {
-    box-sizing: border-box;
-    padding: 10px;
-    width: 100%;
-    background-color: ${(props) => props.color};
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 5px;
-    span {
-      color: #ffffff;
-      text-transform: capitalize;
-      font-weight: bold;
-    }
-  }
-  @media (max-width: 450px) {
-    box-sizing: border-box;
-    padding: 10px;
-    width: 100%;
-    background-color: ${(props) => props.color};
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 5px;
-    span {
-      color: #ffffff;
-      text-transform: capitalize;
-      font-weight: bold;
-    }
-  }
-`
 interface ISocial {
   name: string
   url: string
@@ -126,47 +13,52 @@ interface ISocial {
 }
 
 const About = ({ data }: any): JSX.Element => (
-  <AboutC>
-    <div className="profile">
+  <div className="w-full flex flex-col items-center pt-4 ">
+    <div className="grid place-items-center">
       <Image
-        className="profile-image"
+        className="w-52 rounded-full"
         src={urlFor(data.image).url()}
         width={300}
         height={300}
       />
-      <h1>{data.name}</h1>
+      <h1 className="w-full font-bold text-xl text-center">{data.name}</h1>
     </div>
-    <div className="profile-details">
+    <div className="w-full flex flex-col items-center pt-4 prose">
       <h4>{data.specialty}</h4>
       <PortableText blocks={data.bio[0]} />
 
-      <div className="social">
+      <div className="w-full grid">
         <h3>Puedes seguirme en mis redes sociales uwu.</h3>
-        <div className="container-icons">
+        <div className="w-full grid ">
           {data.social.map((social: ISocial) => (
             <>
               <a
                 key={social.name}
-                className="link_icons"
+                className="my-1 mx-0 no-underline"
                 rel="noreferrer"
                 target="_blank"
                 href={social.url}
               >
-                <ContainerIcons color={social.color}>
+                <div
+                  className={`box-border p-2  flex items-center justify-between rounded-md`}
+                  style={{ backgroundColor: social.color }}
+                >
                   <Image
                     src={urlFor(social.icon).url()}
                     width={30}
                     height={30}
                   />
-                  <span>{social.name}</span>
-                </ContainerIcons>
+                  <span className="text-white capitalize font-bold">
+                    {social.name}
+                  </span>
+                </div>
               </a>
             </>
           ))}
         </div>
       </div>
     </div>
-  </AboutC>
+  </div>
 )
 
 export default About

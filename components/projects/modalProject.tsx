@@ -1,106 +1,8 @@
 import React from 'react'
 // eslint-disable-next-line import/default
 import Image from 'next/image'
-import styled from 'styled-components'
 import { PortableText } from '@/lib/sanity'
-const Modal = styled.div`
-  width: 100%;
-  height: 100vh;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  top: 0;
-  .back {
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #2c2c2c5f;
-  }
-  z-index: 111;
 
-  @media (max-width: 450px) {
-    .showProject {
-      background-color: #fff;
-      width: 100%;
-      z-index: 111;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      padding: 0 2em 0 2em;
-      height: 60vh;
-      position: absolute;
-      border-radius: 30px 30px 0 0;
-      bottom: 0;
-      align-items: center;
-      .container {
-        .body {
-          overflow-y: scroll;
-          max-height: 300px;
-        }
-      }
-      justify-content: space-between;
-      .viewProject {
-        width: 100%;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        a {
-          display: grid;
-          place-items: center;
-          text-decoration: none;
-          color: #000;
-        }
-        h5 {
-          margin: 10px;
-        }
-      }
-    }
-  }
-  @media (min-width: 450.1px) {
-    display: grid;
-    place-items: center;
-    .showProject {
-      background-color: #fff;
-      width: 50%;
-      z-index: 111;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      padding: 0 2em 0 2em;
-      height: 60vh;
-      position: absolute;
-      border-radius: 30px;
-      align-items: center;
-      .container {
-        .body {
-          overflow-y: scroll;
-          max-height: 400px;
-        }
-      }
-      justify-content: space-between;
-      .viewProject {
-        width: 100%;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        a {
-          display: grid;
-          place-items: center;
-          text-decoration: none;
-          color: #000;
-        }
-        h5 {
-          margin: 10px;
-        }
-      }
-    }
-  }
-`
 interface IData {
   _id: string
   image: any
@@ -115,17 +17,25 @@ interface IProps {
 }
 const ModalProject = ({ click, data }: IProps) => (
   <>
-    <Modal>
-      <div className="back" onClick={click}></div>
-      <div className="showProject">
-        <div className="container">
-          <h2>{data.name}</h2>
-          <PortableText className="body" blocks={data.bio} />
+    <div className="w-full h-screen fixed left-0 top-0 z-20  md:grid place-items-center">
+      <div
+        className="w-full h-screen  fixed left-0 top-0  bg-slate-900/40"
+        onClick={click}
+      ></div>
+      <div className="bg-white w-full md:w-auto md:max-w-6/12 z-30 box-border flex flex-col p-8 h-[60vh] absolute rounded-t-lg md:rounded-xl items-center bottom-0 md:bottom-auto pb-0">
+        <h2>{data.name}</h2>
+        <div className="prose flex-1 overflow-auto">
+          <PortableText className="" blocks={data.bio} />
         </div>
-        <div className="viewProject">
-          <a href={data.urlDemo} target="_blank" rel="noreferrer">
+        <div className="w-full flex justify-between items-center pt-4">
+          <a
+            href={data.urlDemo}
+            target="_blank"
+            rel="noreferrer"
+            className=" grid items-center text-slate-900"
+          >
             <Image src="/icons/wool.svg" width={40} height={40} alt="demo" />
-            <h5>Demo</h5>
+            <h5 className=" m-3">Demo</h5>
           </a>
           <a href={data.urlRepo} target="_blank" rel="noreferrer">
             <Image src="/icons/folder.svg" width={40} height={40} alt="repo" />
@@ -133,7 +43,7 @@ const ModalProject = ({ click, data }: IProps) => (
           </a>
         </div>
       </div>
-    </Modal>
+    </div>
   </>
 )
 

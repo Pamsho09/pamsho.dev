@@ -4,107 +4,40 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { urlFor } from '../../lib/sanity'
 import { convertDate } from '../../lib/utils'
-import styled from 'styled-components'
-const CardC = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-between;
-  img {
-    width: 100%;
-  }
-  a {
-    text-decoration: none;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 15px;
-    /* identical to box height */
 
-    /* 800 */
-
-    color: #2d3748;
-  }
-  .container-text {
-    display: grid;
-    padding: 43px 53px;
-    h4 {
-      font-family: Inter;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 20px;
-      line-height: 36px;
-
-      margin: 0px;
-      color: #2d3748;
-    }
-    p {
-      width: 258px;
-      font-family: Inter;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      line-height: 17px;
-
-      color: #718096;
-    }
-    .date {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      span {
-        font-family: Inter;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 15px;
-        /* identical to box height */
-
-        /* 600 */
-
-        color: #718096;
-      }
-    }
-  }
-  .card-image {
-    min-width: 297px;
-    min-height: 179px;
-    display: grid;
-    place-items: center;
-    img {
-      margin: auto;
-      min-width: 297px;
-      min-height: 179px;
-      border-radius: 10px;
-    }
-  }
-`
+const widthDesktop = 433
+const heightDesktop = 247
 const Card = (props: any): JSX.Element => {
   const date = convertDate(props.publishedAt)
   return (
-    <CardC>
-      <div className="container-text">
-        <Link href={`/post/${props.slug.current}`}>
-          <a>
-            {' '}
-            <h4>{props.title}</h4>
-          </a>
-        </Link>
+    <>
+      <Link href={`/post/${props.slug.current}`}>
+        <a>
+          <div className="w-full flex flex-col  gap-1  h-64 shadow-md overflow-hidden rounded-md">
+            <div className="w-full h-48 rounded-md">
+              <Image
+                className="w-full h-48"
+                src={urlFor(props.mainImage).url()}
+                width={widthDesktop}
+                height={heightDesktop}
+                alt={props.title}
+              />
+            </div>
+            <div className="w-full grid  p-3 ">
+              <h4 className="font-bold text-sm m-0 text-hero-color">
+                {props.title}
+              </h4>
 
-        <div className="date">
-          <span>{date}</span>
-        </div>
-      </div>
-      <div className="card-image">
-        <Image
-          src={urlFor(props.mainImage).url()}
-          width={297}
-          height={179}
-          alt={props.title}
-        />
-      </div>
-    </CardC>
+              <div className="w-full flex justify-between">
+                <span className="font-normal text-xs text-slate-500">
+                  {date}
+                </span>
+              </div>
+            </div>
+          </div>{' '}
+        </a>
+      </Link>
+    </>
   )
 }
 

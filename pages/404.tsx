@@ -1,38 +1,14 @@
-import styled from 'styled-components'
 import React from 'react'
-const NotFound = styled.div`
-  width: 80%;
-  margin: auto;
-  height: 80vh;
-  display: grid;
-  place-items: center;
-  .container {
-    text-align: center;
-    width: 50%;
-    img {
-      width: 100%;
-      max-width: 300px;
-    }
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #000;
-  }
-  span {
-    width: 100%;
-  }
-`
 
 const Custom404 = (): JSX.Element => (
-  <NotFound>
-    <div className="container">
-      <img src="./notfound.png" />
+  <div className="flex-1 w-80 grid m-auto place-items-center ">
+    <div className="text-center w-6/12 flex flex-col justify-center items-center text-black ">
+      <img src="./notfound.png" className="w-full max-w-xs" />
       <h3>
-        <span>Hmmm!</span> No encontre lo que buscabas.
+        <span className="w-full">Hmmm!</span> No encontre lo que buscabas.
       </h3>
-      <h4>Me perdonas </h4>
+      <h4 className="font-o">Me perdonas </h4>
     </div>
-  </NotFound>
+  </div>
 )
 export default Custom404

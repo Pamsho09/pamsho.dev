@@ -1,53 +1,18 @@
 import React from 'react'
-import styled from 'styled-components'
+
 // eslint-disable-next-line import/default
 import Image from 'next/image'
-
-const FooterC = styled.footer`
-  @media (min-width: 450.1px) {
-    width: 100%;
-    height: 4em;
-    padding: 0 3em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .container-social {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      a {
-        margin-right: 1em;
-      }
-    }
-  }
-  @media (max-width: 450px) {
-    width: 100%;
-    height: 4em;
-
-    display: grid;
-    place-items: center;
-
-    .container-social {
-      width: 50%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-`
 const Footer = (): JSX.Element => (
-  <FooterC>
-    <div className="container">
-      <span>
-        <b>Pamsho_dev</b> 2020 copyright all rights reserved
-      </span>
-    </div>
-    <div className="container-social">
+  <div className="w-full h-16 grid md:flex md:justify-between md:items-center place-items-center md:pl-0 md:pr-0 md:pt-12 md:pb-12">
+    <span className="w-full text-center md:text-left">
+      <b>Pamsho_dev</b> 2020 copyright all rights reserved
+    </span>
+    <div className="w-1/2 flex justify-between md:justify-end items-center">
       <a
         target="_blank"
         href="https://www.instagram.com/pamsho_dev"
         rel="noreferrer"
-        className="social-fb"
+        className=" md:mr-4 social-fb"
       >
         <Image
           src="/icons/instagram.svg"
@@ -60,7 +25,7 @@ const Footer = (): JSX.Element => (
         target="_blank"
         href="https://www.linkedin.com/in/pamsho-js/"
         rel="noreferrer"
-        className="social-tw"
+        className=" md:mr-4 social-tw"
       >
         <Image
           src="/icons/linkedin.svg"
@@ -73,12 +38,12 @@ const Footer = (): JSX.Element => (
         target="_blank"
         href="https://github.com/Pamsho09"
         rel="noreferrer"
-        className="social-ig"
+        className=" md:mr-4 social-ig"
       >
         <Image src="/icons/github.svg" width={20} height={20} alt="Twitter" />{' '}
       </a>
     </div>
-  </FooterC>
+  </div>
 )
 
 export default Footer

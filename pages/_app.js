@@ -1,6 +1,6 @@
 import Layout from '../components/layout'
 import React, { useEffect } from 'react'
-
+import '../styles/globals.css'
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {

@@ -4,117 +4,35 @@ import { getClient } from '@/lib/sanity.server'
 import { groq } from 'next-sanity'
 import { useRouter } from 'next/router'
 import React from 'react'
-import styled from 'styled-components'
-const CourseC = styled.div`
-  width: 100%;
-  padding: 1em;
-  min-height: 80vh;
-  box-sizing: border-box;
-  .container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    @media (min-width: 450.1px) {
-      .container-image {
-        width: 404px;
 
-        img {
-          width: 100%;
-          height: 230px;
-          border-radius: 16px;
-        }
-      }
-    }
-    @media (max-width: 450px) {
-      .container-image {
-        width: 333px;
-        img {
-          width: 100%;
-          height: 190px;
-          border-radius: 16px;
-        }
-      }
-    }
-    .container-info {
-      width: 333px;
-      h1 {
-        margin: 0;
-        font-family: Inter;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 34px;
-        line-height: 41px;
-      }
-      h4 {
-        margin: 0;
-        font-family: Inter;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 15px;
-        line-height: 18px;
-      }
-      .container-info-skills {
-        display: grid;
-        margin-top: 1em;
-        .container-content {
-          font-family: Inter;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 19px;
-          line-height: 23px;
-        }
-        .container-info-skill {
-          display: flex;
-          flex-wrap: wrap;
-          .skill {
-            margin: 0.5em 1em;
-            font-family: Inter;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 12px;
-            line-height: 15px;
-            text-align: center;
-            padding: 0.5em;
-            background: #65f711;
-            border-radius: 11px;
-            color: #ffffff;
-          }
-        }
-      }
-    }
-  }
-  .container-course {
-    width: 100%;
-    display: grid;
-    .container-cards {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-`
 const Course = ({ data }: any) => {
   const router = useRouter()
   return (
-    <CourseC>
-      <div className="container">
-        <div className="container-image">
-          <img src={urlFor(data.image).url()} alt="" />
+    <div className="w-full p-4 flex-1">
+      <div className="w-full flex items-center justify-center gap-4  px-4  md:justify-around flex-wrap bg-slate-900/50 py-8 md:py-12 rounded-md text-white">
+        <div className=" w-72 md:w-96">
+          <img
+            src={urlFor(data.image).url()}
+            className="w-full h-56 md:h-48 rounded-md"
+            alt=""
+          />
         </div>
-        <div className="container-info">
-          <h1>{data.title}</h1>
-          <h4>Estatus del curso : {data.status[0]}</h4>
+        <div className="w-80 ">
+          <h1 className="m-0 font-bold text-4xl">{data.title}</h1>
+          <h4 className="font-bold text-base ">
+            Estatus del curso : {data.status[0]}
+          </h4>
 
-          <div className="container-info-skills">
-            <span className="container-content">
+          <div className="grid mt-4">
+            <span className="font-normal text-lg">
               Conocimientos basicos para el curso:
             </span>
-            <div className="container-info-skill">
+            <div className="flex flex-wrap">
               {data.skills.map((skill: any, index: number) => (
-                <span key={index} className="skill">
+                <span
+                  key={index}
+                  className="mx-1 my-4 font-bold text-sm text-center  p-2 bg-green-500/60 rounded-full text-white"
+                >
                   {skill}
                 </span>
               ))}
@@ -122,9 +40,20 @@ const Course = ({ data }: any) => {
           </div>
         </div>
       </div>
-      <div className="container-course">
-        <h1 className="cours-title">Curso</h1>
-        <div className="container-cards">
+      <div className="w-full grid mt-6 overflow-hidden">
+        <h1 className="font-bold  text-2xl w-full">Curso</h1>
+        <div className="w-full flex  flex-wrap items-start justify-start ">
+          {data.video.map((item, index) => (
+            <CourseCard
+              key={item['_id']}
+              course={{
+                title: `Clase ${index + 1}`,
+                description: item.title,
+                image: urlFor(item.image).url(),
+              }}
+              onClick={() => router.push(`/courses/video/${item.slug.current}`)}
+            />
+          ))}
           {data.video.map((item, index) => (
             <CourseCard
               key={item['_id']}
@@ -138,7 +67,7 @@ const Course = ({ data }: any) => {
           ))}
         </div>
       </div>
-    </CourseC>
+    </div>
   )
 }
 export default Course
