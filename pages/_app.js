@@ -1,7 +1,10 @@
 import Layout from '../components/layout'
 import React, { useEffect } from 'react'
 import '../styles/globals.css'
+import { QueryClientProvider, QueryClient } from 'react-query'
 // eslint-disable-next-line @typescript-eslint/naming-convention
+const queryClient = new QueryClient()
+
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
     window.OneSignal = window.OneSignal || []
@@ -23,9 +26,11 @@ const MyApp = ({ Component, pageProps }) => {
     }
   }, [])
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <QueryClientProvider client={queryClient}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </QueryClientProvider>
   )
 }
 export default MyApp
