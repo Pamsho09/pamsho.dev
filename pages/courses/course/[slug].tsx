@@ -54,17 +54,6 @@ const Course = ({ data }: any) => {
               onClick={() => router.push(`/courses/video/${item.slug.current}`)}
             />
           ))}
-          {data.video.map((item, index) => (
-            <CourseCard
-              key={item['_id']}
-              course={{
-                title: `Clase ${index + 1}`,
-                description: item.title,
-                image: urlFor(item.image).url(),
-              }}
-              onClick={() => router.push(`/courses/video/${item.slug.current}`)}
-            />
-          ))}
         </div>
       </div>
     </div>
@@ -83,7 +72,7 @@ const courseQuery = groq`
   }
 `
 
-export const getStaticProps = async ({ params, preview = false }) => {
+export const getServerSideProps = async ({ params, preview = false }) => {
   if (!params.slug || params.slug === '') {
     return {
       notFound: true,
@@ -107,13 +96,13 @@ export const getStaticProps = async ({ params, preview = false }) => {
   }
 }
 
-export const getStaticPaths = async () => {
-  const paths = await getClient().fetch(
-    groq`*[_type == "course" && defined(slug.current)][].slug.current`
-  )
+// export const getStaticPaths = async () => {
+//   const paths = await getClient().fetch(
+//     groq`*[_type == "course" && defined(slug.current)][].slug.current`
+//   )
 
-  return {
-    paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: false,
-  }
-}
+//   return {
+//     paths: paths.map((slug) => ({ params: { slug } })),
+//     fallback: false,
+//   }
+// }

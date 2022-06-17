@@ -70,7 +70,7 @@ const videoQuery = groq`
   }
 `
 
-export const getStaticProps = async ({ params, preview = false }) => {
+export const getServerSideProps = async ({ params, preview = false }) => {
   if (!params.slug || params.slug === '') {
     return {
       notFound: true,
@@ -93,13 +93,13 @@ export const getStaticProps = async ({ params, preview = false }) => {
   }
 }
 
-export const getStaticPaths = async () => {
-  const paths = await getClient().fetch(
-    groq`*[_type == "video" && defined(slug.current)][].slug.current`
-  )
+// export const getStaticPaths = async () => {
+//   const paths = await getClient().fetch(
+//     groq`*[_type == "video" && defined(slug.current)][].slug.current`
+//   )
 
-  return {
-    paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: false,
-  }
-}
+//   return {
+//     paths: paths.map((slug) => ({ params: { slug } })),
+//     fallback: false,
+//   }
+// }
