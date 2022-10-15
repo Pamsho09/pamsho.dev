@@ -11,14 +11,6 @@ const Header = () => {
   const { activeUserAccount } = useUserStore()
   const routes: IRoutes[] = [
     {
-      url: '/blog',
-      name: 'Blog',
-    },
-    {
-      name: 'Cursos',
-      url: '/courses',
-    },
-    {
       name: 'Proyectos',
       url: '/projects',
     },
